@@ -39,4 +39,4 @@ def balanced_parenthesis(paren_string):
             return False
     return s_paren.is_empty()
 
-print(balanced_parenthesis("{[]}"))
+print(balanced_parenthesis("{[]}}"))
