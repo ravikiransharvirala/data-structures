@@ -84,6 +84,23 @@ class LinkedList(object):
         else:
             return None
 
+    def delete_by_pos(self, del_pos):
+        if self.head:
+            current = self.head
+            previous = None
+            pos = 1
+            while current.next and pos != del_pos:
+                previous = current
+                current = current.next
+                pos += 1
+            if pos == del_pos:
+                if previous:
+                    previous.next = current.next
+                else:
+                    self.head = self.head.next
+        else:
+            return None
+
 test_ll = LinkedList()
 test_ll.display()
 print(test_ll.search(2))
@@ -96,4 +113,5 @@ test_ll.display()
 print(test_ll.search(1))
 test_ll.delete("C")
 test_ll.search(5)
+test_ll.delete_by_pos(2)
 test_ll.display()
