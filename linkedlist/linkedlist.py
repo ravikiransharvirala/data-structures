@@ -100,6 +100,18 @@ class LinkedList(object):
                     self.head = self.head.next
         else:
             return None
+    
+    def get_length(self):
+        if self.head:
+            current = self.head
+            len = 0
+            while current:
+                current = current.next
+                len += 1
+            return len
+        else:
+            return 0
+
 
 test_ll = LinkedList()
 test_ll.display()
@@ -115,3 +127,4 @@ test_ll.delete("C")
 test_ll.search(5)
 test_ll.delete_by_pos(2)
 test_ll.display()
+print(test_ll.get_length())
