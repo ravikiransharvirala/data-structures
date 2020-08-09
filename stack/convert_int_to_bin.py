@@ -25,4 +25,4 @@ num = 146
 """
 
 print(int_to_bin(146))
-print(timeit.timeit(stmt="int_to_bin(num)", setup=setup_code, number=10000))
+#print(timeit.timeit(stmt="int_to_bin(num)", setup=setup_code, number=10000))k
