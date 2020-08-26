@@ -129,6 +129,64 @@ class LinkedList(object):
             self.head = curr_1
         
         curr_1.next, curr_2.next = curr_2.next, curr_1.next
+    
+    def reverse_iterative(self):
+        prev = None
+        cur = self.head
+        while cur:
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+        self.head = prev
+
+    def merge_sorted(self, llist2):
+        p = self.head
+        q = llist2.head
+        s = None
+
+        if not p:
+            return q
+        if not q:
+            return p
+        if p and q:
+            if p.value <= q.value:
+                s = p
+                p = s.next
+            else:
+                s = q
+                q = s.next
+            new_head = s
+        
+        while p and q:
+            if p.value <= q.value:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+        
+        if not p:
+            s.next = q
+        if not q:
+            s.next = p
+        
+        return new_head
+    
+    def remove_duplicates(self):
+        cur = self.head
+        prev = None
+        dup_values = dict()
+        while cur:
+            if cur.value in dup_values:
+                prev.next = cur.next
+                cur = None
+            else:
+                dup_values[cur.value] = 1
+                prev = cur 
+            cur = prev.next
 
     
 test_ll = LinkedList()
@@ -141,6 +199,33 @@ test_ll.display()
 test_ll.swap_nodes("A", "C")
 print("++++++++++++++++++++++++++")
 test_ll.display()
+print("++++++++++++++++++++++++++")
+test_ll.reverse_iterative()
+test_ll.display()
 
 print(test_ll.len_iterative())
 print(test_ll.len_recursive(test_ll.head))
+print("++++++++++++++++++++++++++")
+num_ll = LinkedList()
+num_ll.append(1)
+num_ll.append(5)
+num_ll.append(6)
+num_ll.append(8)
+num_ll2 = LinkedList()
+num_ll2.append(2)
+num_ll2.append(3)
+num_ll2.append(4)
+num_ll2.append(7)
+print("++++++++++++++++++++++++++")
+num_ll.merge_sorted(num_ll2)
+num_ll.display()
+print("++++++++++++++++++++++++++")
+num_ll3 = LinkedList()
+num_ll3.append(1)
+num_ll3.append(2)
+num_ll3.append(2)
+num_ll3.append(3)
+num_ll3.append(4)
+num_ll3.append(3)
+num_ll3.remove_duplicates()
+num_ll3.display()
